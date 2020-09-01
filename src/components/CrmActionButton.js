@@ -1,6 +1,8 @@
 import React from "react";
 import Textarea from "react-textarea-autosize";
 import "../css/crmList/crmAddForm.css";
+import { connect } from "react-redux";
+import { addList, addCard } from "../actions";
 
 class CrmActionButton extends React.Component {
 
@@ -29,6 +31,35 @@ class CrmActionButton extends React.Component {
 
     };
 
+    handleAddList = () => {
+
+        const { dispatch } = this.props;
+        const { text } = this.state;
+
+        if(text){
+            dispatch(addList(text));
+        }
+        this.setState({text:""});
+        return;
+
+    };
+
+
+    handleAddCard = () => {
+
+        const { dispatch,listId } = this.props;
+        const { text } = this.state;
+
+        if(text){
+            dispatch(addCard(listId,text));
+        }
+        this.setState({text:""});
+        return;
+
+    };
+
+
+    
     renderAddButton = () => {
 
         const { isCard, buttonTitle } = this.props;
@@ -41,7 +72,7 @@ class CrmActionButton extends React.Component {
         return(
             <div className="CrmActionButtonRoot" style={{width:buttonWidth,  color: buttonTextColor, marginTop:buttonMarginTop, background: buttonTextBackgroud}}>
 
-                <button className="CrmActionButtonAdd" onClick={this.openForm}>
+                <button className="CrmActionButtonAdd" onClick={this.openForm} >
                     <span style={{padding: buttonPadding,color: buttonTextColor}}>{buttonTitle}</span>
                 </button>
 
@@ -54,7 +85,7 @@ class CrmActionButton extends React.Component {
     renderCrmAddForm = () => {
 
         const { isCard, inputPlaceholder, actionButtonTitle, idOfActionForm } = this.props;
-        const buttonWidth = !isCard ? "275px": "100%";
+        const buttonWidth = !isCard ? "calc(275px - 16px)": "100%";
 
         return(
 
@@ -71,7 +102,7 @@ class CrmActionButton extends React.Component {
                         style={{width:buttonWidth}}
                     />
                     <div className="ActionFormControls">
-                        <button className="ActionButtonAdd" type="submit">{actionButtonTitle}</button>
+                        <button className="ActionButtonAdd" onMouseDown={ !isCard ? this.handleAddList : this.handleAddCard}>{actionButtonTitle}</button>
                         <button className="ActionButtonAddClose" ></button>
                     </div>
                 </form>
@@ -102,4 +133,4 @@ class CrmActionButton extends React.Component {
 
 
 
-export default CrmActionButton;
+export default connect()(CrmActionButton);
