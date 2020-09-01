@@ -1,0 +1,46 @@
+.crmCardRoot {
+    background-color: #fff;
+    border-radius: 3px;
+    box-shadow: 0 1px 0 rgba(9,30,66,.25);
+    cursor: pointer;
+    display: block;
+    margin-bottom: 8px;
+    width: calc(100% - 16px);
+    min-height: 20px;
+    position: relative;
+    text-decoration: none;
+    padding: 6px 8px 2px;
+    margin: 4px 0;
+    z-index: 0;
+
+}
+
+
+.crmCardTitle{
+
+    width: 100%;
+    height: auto;
+    display: block;
+    overflow: hidden;
+    text-decoration: none;
+    word-wrap: break-word;
+    color: #172b4d;
+    margin: 0;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

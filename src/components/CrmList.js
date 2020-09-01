@@ -1,35 +1,25 @@
 import React from "react";
 import CrmCard from "./CrmCard";
+import "../css/crmList/crmlist.css";
+import CrmActionButton from "./CrmActionButton";
 
-
-const CrmList = ({title}) => {
+const CrmList = ({id, title, cards}) => {
 
     return(
-        <div class="crm-list" style={styles.crmListRoot}>
-            <h3>{title}</h3>
-            <CrmCard />
+        <div className="crmListRoot">
+            <h3 className="crmlistTitle">{title}</h3>
+            <div className="crmListCards">
+                { cards.map( card => <CrmCard key={card.id} id={card.id} title={card.title} description={card.description} />) }
+            </div>
+
+            <CrmActionButton isCard={true} idOfActionForm="CrmAddNewCard" inputPlaceholder="Enter a title for this card..." actionButtonTitle="Add Card" buttonTitle="Add another card" />
         </div>
     );
                                     
 }
 
 
-const styles = {
 
-    crmListRoot:{
-        backgroundColor:"#ccc",
-        borderRadius: 5,
-        width: 275,
-        height:"auto",
-        minHeight: 100,
-        flex: "0 0 auto",
-        padding:8,
-        margin:4,
-        position: "relative",
-        
-    }
-
-};
 
 
 export default CrmList;
